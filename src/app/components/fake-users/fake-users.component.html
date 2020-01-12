@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="buttonDiv">
+    <button (click)="getUser()" class="btn btn-danger btn-sm">
+      Сгенерировать нового
+    </button>
+  </div>
+  <div class="photo"><img src="{{ fakeUser.photo }}" alt="" /></div>
+  <div class="name">
+    {{ fakeUser.firstName }}
+    {{ fakeUser.lastName }}
+  </div>
+  <div class="age">{{ fakeUser.age }}</div>
+  <div class="email">
+    {{ fakeUser.email }}
+  </div>
+  <div class="phone">{{ fakeUser.phone }}</div>
+</div>

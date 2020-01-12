@@ -1,0 +1,49 @@
+.container {
+    gap: 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 10px;
+    width: 20%;
+    padding: 10px;
+    background-color: lighten(gray, 30%);
+  
+    .photo {
+      display: flex;
+      margin-top: 10px;
+      justify-content: center;
+      img {
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+    }
+  
+    .name {
+      margin-top: 10px;
+      &:before {
+        content: "ФИО: ";
+      }
+    }
+  
+    .age {
+      &:before {
+        content: "Возраст: ";
+      }
+    }
+  
+    .email {
+      &:before {
+        content: "Email: ";
+      }
+    }
+  
+    .phone {
+      &:before {
+        content: "Телефон: ";
+      }
+    }
+    .buttonDiv {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
