@@ -1,7 +1,8 @@
 # RU
 * Домашние задания для раздела Angular2 круса Front-End Developer школы ITVDN.
-* Каждая ветка -> выполнение отдельного задания.
 
-# EN
-* Homework for the Angular2 section of the ITVDN Front-End Developer cruise.
-* Each branch -> execution of a single task.
+# Задание к уроку 1
+
+# Задача
+* Определите в AppComponent массив. 
+* Выведите массив в виде списка в шаблоне AppComponent.

@@ -1,5 +1,9 @@
-<app-header>Loading...</app-header>
+<div class="taskText">{{taskText}}</div>
 
-<div>ddddd</div>
+<div class="isp">
+  <ul>
+    <li *ngFor="let word of words">{{ word }}</li>
+  </ul>
+</div>
 
-<router-outlet></router-outlet>
+
