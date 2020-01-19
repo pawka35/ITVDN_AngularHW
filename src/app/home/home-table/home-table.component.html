@@ -1,0 +1,17 @@
+<p>home-table works!</p>
+<div>
+  <table class="table table-stripped table-sm">
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let item of Products;">
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+    </tr>
+    <!-- <tr>
+      <td>fds</td>
+      <td>fds2</td>
+    </tr> -->
+  </table>
+</div>
