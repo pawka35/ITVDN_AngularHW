@@ -1,17 +1,23 @@
-<p>home-table works!</p>
-<div>
-  <table class="table table-stripped table-sm">
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-    </tr>
-    <tr *ngFor="let item of Products;">
-        <td>{{item.name}}</td>
-        <td>{{item.price}}</td>
-    </tr>
-    <!-- <tr>
-      <td>fds</td>
-      <td>fds2</td>
-    </tr> -->
-  </table>
+<div class="container text-center h2">
+  <p class="">Мы в модуле: home-table</p>
+</div>
+
+<div class="container">
+  <div *ngIf="showalert">
+    <app-my-alert [text]="delId"></app-my-alert>
+  </div>
+
+  <div class="mb-3 ml-3">
+    <select (change)="chSel($event.target.value)" class="form-control-sm">
+      <option>Количество строк</option>
+      <option
+        *ngFor="let item of [1, 2, 4, 5, 6, 7, 8, 9, 10]"
+        [value]="item"
+        >{{ item }}</option
+      >
+    </select>
+  </div>
+  <div class="table">
+    <app-my-table [rows]="rowcount" (delete)="del($event)"></app-my-table>
+  </div>
 </div>
