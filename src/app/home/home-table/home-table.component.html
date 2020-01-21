@@ -8,17 +8,7 @@
     <app-my-alert [text]="delId"></app-my-alert>
   </div>
 
-  <div class="mb-3 ml-3">
-    <select (change)="chSel($event.target.value)" class="form-control-sm">
-      <option>Количество строк</option>
-      <option
-        *ngFor="let item of [1, 2, 4, 5, 6, 7, 8, 9, 10]"
-        [value]="item"
-        >{{ item }}</option
-      >
-    </select>
-  </div>
   <div class="table">
-    <app-my-table [rows]="rowcount" (delete)="del($event)"></app-my-table>
+    <app-my-table  [rows]="5" (delete)="del($event)"></app-my-table>
   </div>
 </div>

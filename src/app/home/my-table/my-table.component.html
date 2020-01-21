@@ -1,22 +1,55 @@
 <div class="container">
+
+  <div class="mb-3 ml-3">
+    <select (change)="chSel($event.target.value)" class="form-control-sm">
+      <option>Количество строк</option>
+      <option
+        *ngFor="let item of [1, 2, 4, 5, 6, 7, 8, 9, 10]"
+        [value]="item"
+        >{{ item }}</option>
+    </select>
+  
+    <select (change)='selectCategory($event.target.value)' class="form-control-sm ml-4">
+      <option>Все категории</option>  
+      <option *ngFor = "let item of categories">
+        {{item}}
+      </option>
+    </select>
+  </div>
+
   <table class="table table-striped table-bordered">
     <thead class="thead-dark">
       <tr>
         <th>Name</th>
         <th>Price</th>
+        <th>Category</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of Products">
+      <tr [class.more500]='moreThan500(item.price)' *ngFor="let item of currentTable">
         <td>{{ item.name }}</td>
         <td>{{ item.price }}</td>
+        <td>{{ item.Category }}</td>
         <td>
           <button class="btn btn-sm btn-danger" (click)="del(item.id)">
             Delete
           </button>
         </td>
       </tr>
-    </tbody>
+      <tr>
+        <td><input type="text" [formControl]='newName'></td>
+        <td><input type="text" [formControl]='newPrice'></td>
+        <td> 
+          <select class="form-control-sm" [formControl]='newItemCat'>
+          <option *ngFor = "let item of categories">
+            {{item}}
+          </option>
+        </select>
+      </td>
+        <td><button (click)="addnewItem()" class="btn btn-sm btn-success">Add</button></td>
+      </tr>
+   <tbody>
   </table>
 </div>
+

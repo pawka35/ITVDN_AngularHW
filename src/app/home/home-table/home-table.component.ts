@@ -3,8 +3,9 @@ import { Component, OnInit } from "@angular/core";
 @Component({
   selector: "app-home-table",
   templateUrl: "./home-table.component.html",
-  styleUrls: ["./home-table.component.scss"]
+  styleUrls: ["./home-table.component.scss"],
 })
+
 export class HomeTableComponent implements OnInit {
   constructor() {}
 
@@ -21,7 +22,5 @@ export class HomeTableComponent implements OnInit {
     setTimeout(()=>this.showalert=false,1000)
   }
 
-  chSel(val){
-    this.rowcount = parseInt(val);    
-  }
+  
 }
