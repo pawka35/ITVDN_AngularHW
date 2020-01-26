@@ -14,6 +14,14 @@ const routes: Routes = [
 {
   path:"peoples",
   loadChildren: ()=>import("../app/peoples/peoples.module").then(m=>m.PeoplesModule)
+},
+{
+  path:"admin",
+  loadChildren: ()=>import("../app/admin/admin.module").then(m=>m.AdminModule)
+},
+{
+  path:"login",
+  loadChildren: ()=>import("../app/login/login.module").then(m=>m.LoginModule)
 }
 ];
 

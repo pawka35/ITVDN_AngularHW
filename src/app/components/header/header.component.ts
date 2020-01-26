@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { AuthGuardService } from 'src/app/shared/services/auth-guard.service';
 
 @Component({
   selector: 'app-header',
@@ -7,22 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  headerTitle: string;
-  time: string;
+  loginStatus: string;
 
-  constructor() { }
+  constructor(private _guarg: AuthGuardService) { }
 
   ngOnInit() {
-    this.headerTitle = "This is my first Angular application";
-    this.time = new Date(Date.now()).toLocaleString("ru-RU");
-    this.changeTime();
-    
+  
   }
 
-  changeTime(){
-    setInterval(()=>{
-      this.time = new Date(Date.now()).toLocaleString("ru-RU");
-    },1000)
-  }  
+  ngAfterContentChecked(){
+    this.loginStatus = this._guarg.checkStorage()?"LogOut":"LogIn";
+  }
+
 
 }

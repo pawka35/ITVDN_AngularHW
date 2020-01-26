@@ -1,0 +1,15 @@
+<div class="row container mt-5">
+  <div class="col-3">
+    <p class="alert alert-warning" >Список людей</p>
+    <div *ngIf="Peoples">
+      <ul  class="list-group">
+        <li class="list-group-item list-group-item-info" *ngFor="let people of Peoples" (click)="showPeople(people.id)">
+          {{ people.id }}.{{ people.first_name }} {{ people.last_name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
