@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { ApiService } from './shared/services/api.service';
+import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,9 +14,9 @@ import { ApiService } from './shared/services/api.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [AuthGuardService, ApiService],
+  providers: [AuthGuardService, ApiService, FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

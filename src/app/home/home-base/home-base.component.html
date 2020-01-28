@@ -1,3 +1,121 @@
-<div class="container">
-<p>home-base works!</p>
+<div class="container-fluid mt-3 w-50">
+  <form novalidate [formGroup]="userForm" (ngSubmit)="submit()">
+    <div formGroupName="name">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          formControlName="firstName"
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder="Enter first name"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="
+            userForm.get('name').get('firstName').invalid &&
+            userForm.get('name').get('firstName').touched
+          "
+        >
+          <small *ngIf="userForm.get('name').get('firstName').errors.required"
+            >Firts is required</small
+          >
+          <small *ngIf="userForm.get('name').get('firstName').errors.minlength"
+            >Minimum
+            {{
+              userForm.get("name").get("firstName").errors.minlength
+                .requiredLength
+            }}
+            letter</small
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Last Name</label>
+        <input
+          formControlName="lastName"
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="Enter last name"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="
+            userForm.get('name').get('lastName').invalid &&
+            userForm.get('name').get('lastName').touched
+          "
+        >
+          <small *ngIf="userForm.get('name').get('lastName').errors.required"
+            >Last is required</small
+          >
+          <small *ngIf="userForm.get('name').get('lastName').errors.minlength"
+            >Minimum
+            {{
+              userForm.get("name").get("lastName").errors.minlength
+                .requiredLength
+            }}
+            letter</small
+          >
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        autocomplete="off"
+      />
+      <div
+        *ngIf="
+          userForm.get('email').invalid &&
+          userForm.get('email').touched
+        "
+      >
+        <small
+          *ngIf="
+            userForm.get('email').errors.required 
+          "
+          >Email is required</small
+        >
+        <small
+          *ngIf="userForm.get('email').errors.email"
+          >This is not email addres</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="avata">Avatar</label>
+      <input
+        formControlName="avatar"
+        type="file"
+        class="form-control"
+        id="avata"
+      />
+    </div>
+    <div class="form-check">
+      <input
+        formControlName="agree"
+        type="checkbox"
+        class="form-check-input"
+        id="agree"
+      />
+      <label class="form-check-label" for="agree">Agree with rule</label>
+      <small *ngIf="userForm.get('agree').invalid && userForm.get('agree').touched"
+        >You must agree whith our rules</small>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary mt-3"
+      [disabled]="userForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
 </div>
