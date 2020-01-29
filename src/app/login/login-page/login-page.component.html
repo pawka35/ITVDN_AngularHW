@@ -1,33 +1,48 @@
+<app-alert *ngIf='_alert.visible' text={{_alert.text}}></app-alert>
+
 <div class="container mt-3">
   <p class="alert alert-warning">Login form</p>
   <div *ngIf="!loged; else elseBlock" class="row w-50">
-    <form>
+    <form [formGroup]='loginForm'>
       <div class="form-group">
         <label>Email address</label>
         <input
           type="email"
-          [formControl]="email"
+          formControlName="email"
           class="form-control"
           placeholder="Enter email"
         />
         <small id="emailHelp" class="form-text text-muted"
           >Correct email: "eve.holt@reqres.in"</small
         >
+        <div *ngIf="
+        loginForm.get('email').invalid &&
+        loginForm.get('email').touched
+      ">
+          <small *ngIf="loginForm.get('email').errors.required">Email requiared </small>
+          <small *ngIf="loginForm.get('email').errors.email">Wrong email format</small>
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
         <input
           type="password"
-          [formControl]="password"
+          formControlName="password"
           class="form-control"
           placeholder="Password"
+          autocomplete="off"
         />
         <small id="emailHelp" class="form-text text-muted"
           >Correct password: "cityslicka"</small
         >
+        <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+          <small *ngIf="loginForm.get('password').errors.required" >Password requiared! </small>
+          <small *ngIf="loginForm.get('password').errors.minlength">Minimal length of password is 
+            {{loginForm.get('password').errors.minlength.requiredLength}} symbols.</small>
+        </div>
       </div>
 
-      <button class="btn btn-primary" (click)="login()">Login</button>
+      <button class="btn btn-primary" [disabled]="loginForm.invalid" (click)="login()">Login</button>
     </form>
   </div>
   <ng-template #elseBlock>
@@ -38,10 +53,7 @@
           <div >
             Для отмены авторизации, нажмите кнопку "Выход" 
           </div>
-       
-        <button class="btn btn-primary mt-4" (click)="logout()">Logout</button>
-
+        <button class="btn btn-primary mt-4"  (click)="logout()">Logout</button>
       </div>
-    
   </ng-template>
 </div>

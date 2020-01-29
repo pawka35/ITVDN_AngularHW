@@ -1,3 +1,4 @@
+<!-- <app-alert *ngIf='_alert.visible' text={{_alert.text}}></app-alert> -->
 <div class="container-fluid mt-3 w-50">
   <form novalidate [formGroup]="userForm" (ngSubmit)="submit()">
     <div formGroupName="name">
@@ -26,7 +27,7 @@
               userForm.get("name").get("firstName").errors.minlength
                 .requiredLength
             }}
-            letter</small
+            letters</small
           >
         </div>
       </div>

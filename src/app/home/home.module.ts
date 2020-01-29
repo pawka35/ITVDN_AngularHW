@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeBaseComponent } from './home-base/home-base.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -13,7 +12,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class HomeModule { }
