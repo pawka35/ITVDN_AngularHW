@@ -7,11 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AlertComponent  {
 
-  constructor() { 
+  constructor() {
   }
 
   @Input()
-  text:string;
-  
+  text: string;
+
 
 }
