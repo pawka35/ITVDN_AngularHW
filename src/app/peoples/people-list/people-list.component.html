@@ -8,8 +8,12 @@
         </li>
       </ul>
     </div>
+    <button class="btn btn-primary mt-2" (click)="addNewPeople=true;">Add user</button>
   </div>
   <div class="col-3">
     <router-outlet></router-outlet>
   </div>
 </div>
+<ng-container *ngIf=addNewPeople>
+<app-add-people></app-add-people>
+</ng-container>

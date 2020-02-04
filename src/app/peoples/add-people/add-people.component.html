@@ -19,13 +19,13 @@
           "
         >
           <small *ngIf="userForm.get('name').get('firstName').errors.required"
-            >Firts is required</small
+          >Firts is required</small
           >
           <small *ngIf="userForm.get('name').get('firstName').errors.minlength"
-            >Minimum
+          >Minimum
             {{
-              userForm.get("name").get("firstName").errors.minlength
-                .requiredLength
+            userForm.get("name").get("firstName").errors.minlength
+              .requiredLength
             }}
             letters</small
           >
@@ -48,13 +48,13 @@
           "
         >
           <small *ngIf="userForm.get('name').get('lastName').errors.required"
-            >Last is required</small
+          >Last is required</small
           >
           <small *ngIf="userForm.get('name').get('lastName').errors.minlength"
-            >Minimum
+          >Minimum
             {{
-              userForm.get("name").get("lastName").errors.minlength
-                .requiredLength
+            userForm.get("name").get("lastName").errors.minlength
+              .requiredLength
             }}
             letter</small
           >
@@ -80,13 +80,13 @@
       >
         <small
           *ngIf="
-            userForm.get('email').errors.required 
+            userForm.get('email').errors.required
           "
-          >Email is required</small
+        >Email is required</small
         >
         <small
           *ngIf="userForm.get('email').errors.email"
-          >This is not email addres</small
+        >This is not email addres</small
         >
       </div>
     </div>
@@ -108,7 +108,7 @@
       />
       <label class="form-check-label" for="agree">Agree with rule</label>
       <small *ngIf="userForm.get('agree').invalid && userForm.get('agree').touched"
-        >You must agree whith our rules</small>
+      >You must agree whith our rules</small>
     </div>
 
     <button
@@ -120,3 +120,4 @@
     </button>
   </form>
 </div>
+
