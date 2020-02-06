@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { ApiService } from 'src/app/shared/services/api.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import {People} from '../../classes/people';
@@ -12,6 +12,7 @@ import {People} from '../../classes/people';
 
 export class PeopleCurrentComponent implements OnInit {
   CurrentPeople: People;
+
   constructor(private _api: ApiService, private _activatedRoute: ActivatedRoute) {}
   ngOnInit() {
     this._activatedRoute.params.forEach((params: Params) => {

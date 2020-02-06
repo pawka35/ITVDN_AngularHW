@@ -1,19 +1,33 @@
 <div class="row container mt-5">
-  <div class="col-3">
+  <div class="col-4">
     <p class="alert alert-warning" >Список людей</p>
     <div *ngIf="Peoples">
       <ul  class="list-group">
-        <li class="list-group-item list-group-item-info" *ngFor="let people of Peoples" (click)="showPeople(people.id)">
-          {{ people.id }}.{{ people.first_name }} {{ people.last_name }}
+        <li class="list-group-item list-group-item-info" *ngFor="let people of Peoples;" >
+          <div *ngIf="checkAuth()">
+            <span class="mr-2"><button class="btn btn-sm btn-secondary" (click)="changeUser(people.id)">Edit</button></span>
+            <span class="mr-2"><button class="btn btn-sm btn-danger" (click)="delUser(people.id)">Del</button></span>
+          </div>
+          <div (click)="showPeople(people.id)">
+            {{ people.id }}.{{ people.first_name }} {{ people.last_name }}
+          </div>
         </li>
       </ul>
     </div>
+    <ng-container *ngIf="checkAuth()">
     <button class="btn btn-primary mt-2" (click)="addNewPeople=true;">Add user</button>
+    </ng-container>
   </div>
   <div class="col-3">
     <router-outlet></router-outlet>
   </div>
 </div>
 <ng-container *ngIf=addNewPeople>
-<app-add-people></app-add-people>
+<app-add-people (catchNewUser)="hereNewUser($event)"></app-add-people>
+</ng-container>
+<ng-container *ngIf="editedUser">
+  <app-edit-people [editedUser]="editedUser"
+                   (outCloseForm)="closeEditForm($event)"
+                   (applyEditUser)="applyEditUser($event)"
+  ></app-edit-people>
 </ng-container>

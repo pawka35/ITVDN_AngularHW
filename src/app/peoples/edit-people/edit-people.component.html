@@ -1,0 +1,115 @@
+<p>edit-people works!</p>
+{{editedUser | json}}
+<!-- <app-alert *ngIf='_alert.visible' text={{_alert.text}}></app-alert> -->
+<div class="container-fluid mt-3 w-50">
+  <form novalidate [formGroup]="editForm">
+    <div><button class="btn btn-sm btn-danger" (click)="editedUser= closeForm(true)">&times;</button></div>
+    <div formGroupName="name">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          formControlName="firstName"
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder="Enter first name"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="
+            editForm.get('name').get('firstName').invalid &&
+            editForm.get('name').get('firstName').touched
+          "
+        >
+          <small *ngIf="editForm.get('name').get('firstName').errors.required"
+          >Firts is required</small
+          >
+          <small *ngIf="editForm.get('name').get('firstName').errors.minlength"
+          >Minimum
+            {{
+            editForm.get("name").get("firstName").errors.minlength
+              .requiredLength
+            }}
+            letters</small
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input
+          formControlName="lastName"
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="Enter last name"
+          autocomplete="off"
+        />
+        <div
+          *ngIf="
+            editForm.get('name').get('lastName').invalid &&
+            editForm.get('name').get('lastName').touched
+          "
+        >
+          <small *ngIf="editForm.get('name').get('lastName').errors.required"
+          >Last is required</small
+          >
+          <small *ngIf="editForm.get('name').get('lastName').errors.minlength"
+          >Minimum
+            {{
+            editForm.get("name").get("lastName").errors.minlength
+              .requiredLength
+            }}
+            letter</small
+          >
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        autocomplete="off"
+      />
+      <div
+        *ngIf="
+          editForm.get('email').invalid &&
+          editForm.get('email').touched
+        "
+      >
+        <small
+          *ngIf="
+            editForm.get('email').errors.required
+          "
+        >Email is required</small
+        >
+        <small
+          *ngIf="editForm.get('email').errors.email"
+        >This is not email addres</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="avata">Avatar</label>
+      <input
+        formControlName="avatar"
+        type="file"
+        class="form-control"
+        id="avata"
+      />
+    </div>
+
+    <button
+      class="btn btn-primary mt-3"
+      [disabled]="editForm.invalid"
+      (click)="applyUser()"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+

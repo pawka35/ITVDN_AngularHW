@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
 import {ApiService} from "../../shared/services/api.service";
@@ -11,6 +11,10 @@ import {People} from "../../classes/people";
   styleUrls: ['./add-people.component.scss']
 })
 export class AddPeopleComponent implements OnInit, OnDestroy {
+
+
+  @Output()
+  catchNewUser: EventEmitter<People> = new EventEmitter<People>();
 
   userForm: FormGroup;
   sub: Subscription;
@@ -43,15 +47,15 @@ export class AddPeopleComponent implements OnInit, OnDestroy {
       // посколь картинки некуда загружать, берем просто из интернета
       'https://pronto-core-cdn.prontomarketing.com/2/wp-content/uploads/sites/2375/cache/2020/01/spy-clipart-9-e1538678193587/2613749646.png'
     );
-
-    this.sub.add(
-      this._api.addPeople(newPeople).subscribe(res => {
+    this._api.addPeople(newPeople)
+      .subscribe(res => {
         console.log(res);
-        // this._alert.showAlert(`${res} \r\n Look it on page 'Peoples' `);
-        alert(`${res} \r\n Look it on page 'Peoples' `);
+        alert(`${res.id} \r\n Look it on page 'Peoples' `);
+        newPeople.id = res.id;
+        this.catchNewUser.emit(newPeople);
         this.userForm.reset();
-      })
-    );
+      });
+
   }
 
   ngOnDestroy(): void {

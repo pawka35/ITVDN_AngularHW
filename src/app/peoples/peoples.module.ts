@@ -8,10 +8,12 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {myHttpInterceptor} from '../shared/services/myHttp.interceptor';
 import { AddPeopleComponent } from './add-people/add-people.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {People} from "../classes/people";
+import { EditPeopleComponent } from './edit-people/edit-people.component';
 
 
 @NgModule({
-  declarations: [PeopleListComponent, PeopleCurrentComponent, AddPeopleComponent, AddPeopleComponent],
+  declarations: [PeopleListComponent, PeopleCurrentComponent, AddPeopleComponent, AddPeopleComponent, EditPeopleComponent],
   imports: [
     CommonModule,
     PeoplesRoutingModule,
@@ -19,4 +21,5 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: myHttpInterceptor, multi: true}]
 })
-export class PeoplesModule { }
+export class PeoplesModule {
+}
