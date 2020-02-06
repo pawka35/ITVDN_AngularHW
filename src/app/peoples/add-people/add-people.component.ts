@@ -19,6 +19,7 @@ export class AddPeopleComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
   sub: Subscription;
 
+  // tslint:disable-next-line:variable-name
   constructor(private _fb: FormBuilder, private _api: ApiService, private _alert: AlertService) {}
 
   ngOnInit() {
@@ -47,15 +48,15 @@ export class AddPeopleComponent implements OnInit, OnDestroy {
       // посколь картинки некуда загружать, берем просто из интернета
       'https://pronto-core-cdn.prontomarketing.com/2/wp-content/uploads/sites/2375/cache/2020/01/spy-clipart-9-e1538678193587/2613749646.png'
     );
-    this._api.addPeople(newPeople)
+    this.sub.add(this._api.addPeople(newPeople)
       .subscribe(res => {
         console.log(res);
         alert(`${res.id} \r\n Look it on page 'Peoples' `);
         newPeople.id = res.id;
         this.catchNewUser.emit(newPeople);
         this.userForm.reset();
-      });
-
+      })
+    );
   }
 
   ngOnDestroy(): void {

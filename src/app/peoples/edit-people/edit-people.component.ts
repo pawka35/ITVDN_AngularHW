@@ -19,12 +19,12 @@ outCloseForm: EventEmitter<boolean> = new EventEmitter<boolean>();
 applyEditUser: EventEmitter<People> = new EventEmitter<People>();
 
   editForm: FormGroup;
-  //sub: Subscription;
+  sub: Subscription;
 
   constructor(private _fb: FormBuilder, private _api: ApiService, private _alert: AlertService) {}
 
   ngOnInit() {
-    //this.sub = new Subscription();
+    this.sub = new Subscription();
     this.editForm = this._fb.group({
       name: this._fb.group({
         firstName: [this.editedUser.first_name, [Validators.required, Validators.minLength(2)]],
@@ -39,17 +39,18 @@ applyEditUser: EventEmitter<People> = new EventEmitter<People>();
     this.editedUser.first_name = this.editForm.value.name.firstName;
     this.editedUser.last_name = this.editForm.value.name.lastName;
     this.editedUser.email = this.editForm.value.email;
-    this._api.changeUser(this.editedUser)
+    this.sub.add(this._api.changeUser(this.editedUser)
       .subscribe(res => {
         alert(`User update at ${res.updatedAt}! new name: ${res.name}`);
-      });
+      })
+    );
     this.applyEditUser.emit(this.editedUser);
     this.closeForm(true);
   }
 
   ngOnDestroy(): void {
-   // this.sub.unsubscribe();
-    console.log('unsubscribe done!');
+    this.sub.unsubscribe();
+    //console.log('unsubscribe done!');
   }
 
   closeForm(act: boolean) {
