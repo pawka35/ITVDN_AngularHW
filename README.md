@@ -1,7 +1,5 @@
-# RU
-* Домашние задания для раздела Angular2 круса Front-End Developer школы ITVDN.
-* Каждая ветка -> выполнение отдельного задания.
+# Lesson 8
+## Task summary
+- work with https://gorest.co.in
+- work with https://randomuser.me/api/?gender=male&inc=picture (for photo)
 
-# EN
-* Homework for the Angular2 section of the ITVDN Front-End Developer cruise.
-* Each branch -> execution of a single task.
