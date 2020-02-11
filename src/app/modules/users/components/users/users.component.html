@@ -1,0 +1,74 @@
+
+<button class="btn btn-sm btn-success">New user</button>
+
+<div class="card text-center m-3">
+  <h3 class="card-header">Users</h3>
+  <div class="card-body">
+    <table class="table table-sm table-striped ">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+      <tr>
+        <th scope="col">
+          <input type="text" class="form-control">
+        </th>
+        <th scope="col">
+          <input type="text" class="form-control" placeholder="first_name"  [(ngModel)]="firstName" (change)="getUserList()">
+        </th>
+        <th scope="col">
+          <input type="text" class="form-control" placeholder="last_name"  [(ngModel)]="lastName" (change)="getUserList()">
+        </th>
+        <th scope="col">
+          <select name="" id="" class="form-control" (change)="genreChange($event)">
+            <option></option>
+            <option *ngFor="let genre of genres">{{genre}}</option>
+          </select>
+        </th>
+        <th scope="col">
+          <input type="text" class="form-control" placeholder="last_name"  [(ngModel)]="email" (change)="getUserList()">
+        </th>
+        <th scope="col">
+          <input type="text" class="form-control" placeholder="last_name"  [(ngModel)]="phone" (change)="getUserList()">
+        </th>
+        <th scope="col">
+          <select name="" id="" class="form-control " (change)="statusChange($event)">
+            <option></option>
+            <option *ngFor="let status of statuses">{{status}}</option>
+          </select>
+        </th>
+        <th scope="col">Action</th>
+      </tr>
+
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <!--    <th scope="row">1</th>-->
+        <td>{{user.id}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.status}}</td>
+        <td>
+          <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">account_circle</i></button>
+          <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">build</i></button>
+          <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">delete_foreve</i></button>
+        </td>
+      </tr>
+      <!--  ID	First Name	Last Name	Gender	Email	Phone	Status	Action-->
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer pb-0 pt-3">
+    <jw-pagination [items]="items" [pageSize]="pageSize"  (changePage)="onChangePage($event)"></jw-pagination>
+  </div>
+</div>
