@@ -1,1 +1,65 @@
-<p>current-user works!</p>
+<ng-container *ngIf="currentUser">
+  {{currentUser.first_name}} {{currentUser.last_name}}
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <th scope="row">Id</th>
+    <td>{{currentUser.id}}</td>
+  </tr>
+  <tr>
+    <th scope="row">First Name</th>
+    <td>{{currentUser.first_name}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Last Name</th>
+    <td>{{currentUser.last_name}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Gender</th>
+    <td>{{currentUser.gender}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Dob</th>
+    <td>{{currentUser.dob | date: "d MMMM y"}} </td>
+  </tr>
+  <tr>
+    <th scope="row">Email</th>
+    <td>{{currentUser.email}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Phone</th>
+    <td>{{currentUser.phone}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Web site</th>
+    <td>{{currentUser.website}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Address</th>
+    <td>{{currentUser.address}}</td>
+  </tr>
+  <tr>
+    <th scope="row">Avatar</th>
+    <td>
+      <img src=" {{currentUser._links.avatar.href}}" alt="">
+  </tr>
+  </tbody>
+</table>
+</ng-container>
+<ng-container *ngIf="usersPosts">
+  <table *ngFor="let post of usersPosts" class="table table-bordered">
+    <tbody>
+    <tr>
+      <th scope="row">Id</th>
+      <td>{{post.id}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Title</th>
+      <td>{{post.title}}</td>
+    <tr>
+      <th scope="row">Body</th>
+      <td>{{post.body}}</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>

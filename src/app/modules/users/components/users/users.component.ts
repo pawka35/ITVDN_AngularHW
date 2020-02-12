@@ -58,12 +58,12 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  genreChange($event: Event) {
+  genreChange($event: any) {
     this.genre = $event.target.value;
     this.getUserList();
   }
 
-  statusChange($event: Event) {
+  statusChange($event: any) {
     this.status = $event.target.value;
     this.getUserList();
   }
@@ -73,3 +73,4 @@ export class UsersComponent implements OnInit {
     this.router.navigate([id], {relativeTo: this.activeRoute});
   }
 }
+

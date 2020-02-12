@@ -14,6 +14,33 @@ export class ApiService {
   `);
   }
 
+  getUser(id: number){
+    return this.http.get<CurUserAnswer>(`/users/${id}`);
+  }
+
+  getUsersPosts(id: number) {
+    return this.http.get<Array<Post>>(`/posts?user_id=${id}`);
+  }
+
+}
+
+// export interface PostList {
+//   result: Array<Post>;
+// }
+
+export  interface Post {
+  id: number;
+  user_id: number;
+  title: string;
+  body: string;
+}
+
+export interface CurUserAnswer {
+  _meta: {success: true
+  code: 200
+  message: 'OK. Everything worked as expected.'
+  };
+  result: User;
 }
 
 export interface UsersList {
@@ -45,7 +72,7 @@ export interface User {
   website: string;
   address: string;
   status: string;
-  links: {
+  _links: {
     self: {
       href: string;
     };
