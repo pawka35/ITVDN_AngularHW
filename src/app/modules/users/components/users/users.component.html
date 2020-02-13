@@ -1,5 +1,6 @@
 
-<button class="btn btn-sm btn-success">New user</button>
+<div class="container">
+<button class="btn btn-sm btn-success" (click)="addNewUser()">New user</button>
 
 <div class="card text-center m-3">
   <h3 class="card-header">Users</h3>
@@ -60,8 +61,8 @@
         <td>{{user.status}}</td>
         <td>
           <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">account_circle</i></button>
-          <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">build</i></button>
-          <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">delete_foreve</i></button>
+          <button class="btn-sm btn" (click)="editUser(user.id)"> <i class="material-icons">build</i></button>
+          <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">delete_forever</i></button>
         </td>
       </tr>
       <!--  ID	First Name	Last Name	Gender	Email	Phone	Status	Action-->
@@ -71,4 +72,5 @@
   <div class="card-footer pb-0 pt-3">
     <jw-pagination [items]="items" [pageSize]="pageSize"  (changePage)="onChangePage($event)"></jw-pagination>
   </div>
+</div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from "@angular/router";
-import {ApiService, Post, User} from "../../../../shared/api.service";
+import {ActivatedRoute, Params} from '@angular/router';
+import {ApiService, Post, User} from '../../../../shared/api.service';
 
 @Component({
   selector: 'app-current-user',
@@ -22,7 +22,7 @@ export class CurrentUserComponent implements OnInit {
           });
         this.api.getUsersPosts(+params.id)
           .subscribe(res => {
-            this.usersPosts = res.result;
+            this.usersPosts = res['results'];
           });
     });
   }

@@ -72,5 +72,13 @@ export class UsersComponent implements OnInit {
     console.log(id);
     this.router.navigate([id], {relativeTo: this.activeRoute});
   }
+
+  editUser(id: number) {
+    this.router.navigate([`edit/${id}`], {relativeTo: this.activeRoute});
+  }
+
+  addNewUser() {
+    this.router.navigate([`edit/new`], {relativeTo: this.activeRoute});
+  }
 }
 

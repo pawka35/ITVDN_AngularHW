@@ -19,9 +19,24 @@ export class ApiService {
   }
 
   getUsersPosts(id: number) {
-    return this.http.get<Array<Post>>(`/posts?user_id=${id}`);
+    return this.http.get<Array<any>>(`/posts?user_id=${id}`);
   }
 
+  sendUserInfo(user: User) {
+    console.log(user);
+    return this.http.patch(`/users/${user.id}`, {user});
+  }
+
+  addUser(user: User) {
+    console.log(user);
+    return this.http.post(`/users`, {
+      first_name: user.first_name,
+      last_name: user.last_name,
+      gender: user.gender,
+      email: user.email,
+      status: user.status
+    });
+  }
 }
 
 // export interface PostList {
