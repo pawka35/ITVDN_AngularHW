@@ -26,6 +26,7 @@ subscriptions: Subscription = new Subscription();
       if (!isNaN(+params.id)) {
         this.subscriptions.add(this.api.getUser(+params.id)
           .subscribe(res => {
+            console.log(res);
             this.currentUser = res.result;
             this.userForm.controls['email'].setValue(this.currentUser.email);
             this.userForm.controls['firstName'].setValue(this.currentUser.first_name);
@@ -35,6 +36,7 @@ subscriptions: Subscription = new Subscription();
             this.userForm.controls['address'].setValue(this.currentUser.address);
             this.userForm.controls['userStatus'].setValue(this.currentUser.status);
             this.userForm.controls['gender'].setValue(this.currentUser.gender);
+            this.userForm.controls['dob'].setValue(this.currentUser.dob);
           }));
       }
 
@@ -46,7 +48,8 @@ subscriptions: Subscription = new Subscription();
         website: ['', [Validators.required]],
         address: ['', [Validators.required]],
         userStatus: [''],
-        gender: ['']
+        gender: [''],
+        dob: ['']
       });
     });
   }
@@ -85,7 +88,7 @@ subscriptions: Subscription = new Subscription();
       gender: this.userForm.value.gender,
       email: this.userForm.value.email,
       id: null,
-      dob: null,
+      dob: this.userForm.value.dob,
       _links: null
     };
 
