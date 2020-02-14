@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-4">
 <form [formGroup]="userForm" novalidate >
   <div class="form-group">
     <label for="firstName">First Name</label>
@@ -36,9 +36,13 @@
       <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
     </select>
   </div>
-
+<div>
   <button *ngIf="currentUser" type="submit" class="btn btn-primary" (click)="sendEdited()">Send User</button>
 
   <button *ngIf="!currentUser" type="submit" class="btn btn-primary" (click)="addUser()">Add User</button>
+
+    <button (click)="backToList()" class="btn btn-secondary ml-2">Back to list</button>
+
+</div>
 </form>
 </div>

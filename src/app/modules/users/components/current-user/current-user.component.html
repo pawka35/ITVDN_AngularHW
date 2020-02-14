@@ -1,5 +1,6 @@
+<div class="container mb-4">
 <ng-container *ngIf="currentUser">
-  {{currentUser.first_name}} {{currentUser.last_name}}
+  <div class="mt-1"> <h3> {{currentUser.first_name}} {{currentUser.last_name}}</h3> </div>
 <table class="table table-bordered">
   <tbody>
   <tr>
@@ -38,19 +39,15 @@
     <th scope="row">Address</th>
     <td>{{currentUser.address}}</td>
   </tr>
-<!--  <tr>-->
-<!--    <th scope="row">Avatar</th>-->
-<!--    <td>-->
-<!--      <img src=" {{currentUser._links.avatar.href}}" alt="">-->
-<!--  </tr>-->
   </tbody>
 </table>
 </ng-container>
 <ng-container *ngIf="usersPosts">
+  <div class="mt-1"> <h3>User Posts</h3> </div>
   <table *ngFor="let post of usersPosts" class="table table-bordered">
     <tbody>
     <tr>
-      <th scope="row">Id</th>
+      <th scope="row">Post Id</th>
       <td>{{post.id}}</td>
     </tr>
     <tr>
@@ -63,3 +60,7 @@
     </tbody>
   </table>
 </ng-container>
+  <div>
+    <button (click)="backToList()" class="btn btn-primary">Back to list</button>
+  </div>
+</div>

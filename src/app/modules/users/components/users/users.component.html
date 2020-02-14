@@ -1,7 +1,6 @@
 
-<div class="container">
-<button class="btn btn-sm btn-success" (click)="addNewUser()">New user</button>
-
+<div class="container mb-4">
+<button class="btn btn-sm btn-success ml-3" (click)="addNewUser()">New user</button>
 <div class="card text-center m-3">
   <h3 class="card-header">Users</h3>
   <div class="card-body">
@@ -19,7 +18,7 @@
       </tr>
       <tr>
         <th scope="col">
-          <input type="text" class="form-control">
+          <input disabled type="text" class="form-control">
         </th>
         <th scope="col">
           <input type="text" class="form-control" placeholder="first_name"  [(ngModel)]="firstName" (change)="getUserList()">
@@ -34,10 +33,10 @@
           </select>
         </th>
         <th scope="col">
-          <input type="text" class="form-control" placeholder="last_name"  [(ngModel)]="email" (change)="getUserList()">
+          <input type="text" class="form-control" placeholder="email"  [(ngModel)]="email" (change)="getUserList()">
         </th>
         <th scope="col">
-          <input type="text" class="form-control" placeholder="last_name"  [(ngModel)]="phone" (change)="getUserList()">
+          <input type="text" class="form-control" placeholder="Phone"  [(ngModel)]="phone" (change)="getUserList()">
         </th>
         <th scope="col">
           <select name="" id="" class="form-control " (change)="statusChange($event)">
@@ -59,10 +58,10 @@
         <td>{{user.email}}</td>
         <td>{{user.phone}}</td>
         <td>{{user.status}}</td>
-        <td>
+        <td class="col-2">
           <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">account_circle</i></button>
           <button class="btn-sm btn" (click)="editUser(user.id)"> <i class="material-icons">build</i></button>
-          <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">delete_forever</i></button>
+          <button class="btn-sm btn" (click)="deleteUser(user.id)"> <i class="material-icons">delete_forever</i></button>
         </td>
       </tr>
       <!--  ID	First Name	Last Name	Gender	Email	Phone	Status	Action-->

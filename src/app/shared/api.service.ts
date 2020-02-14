@@ -37,7 +37,13 @@ export class ApiService {
       status: user.status
     });
   }
+
+  deleteUser(id: number) {
+    return this.http.delete(`/users/${id}`);
+  }
+
 }
+
 
 // export interface PostList {
 //   result: Array<Post>;

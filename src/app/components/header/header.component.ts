@@ -13,16 +13,16 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.headerTitle = "This is my first Angular application";
+    this.headerTitle = "Home Work #9. Itvdn front-end course";
     this.time = new Date(Date.now()).toLocaleString("ru-RU");
     this.changeTime();
-    
+
   }
 
   changeTime(){
     setInterval(()=>{
       this.time = new Date(Date.now()).toLocaleString("ru-RU");
     },1000)
-  }  
+  }
 
 }

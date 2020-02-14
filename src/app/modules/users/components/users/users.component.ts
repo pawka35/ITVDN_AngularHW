@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApiService, User} from '../../../../shared/api.service';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Subject, Subscription} from "rxjs";
 
 
 
@@ -10,7 +11,8 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription = new Subscription();
   items = [];
   users: Array<User>;
   pageSize: number;
@@ -28,14 +30,13 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getUserList().subscribe(res => {
+    this.subscriptions.add(this.api.getUserList().subscribe(res => {
        this.users = res.result;
-       console.log(res._meta.totalCount);
        this.items = Array(res._meta.totalCount).fill(0).map((x, i) => ({ id: (i + 1)}));
        this.pageSize = res._meta.perPage;
        this.genres = [...new Set(this.users.map(x => x.gender))];
        this.statuses = [...new Set(this.users.map(x => x.status))];
-    });
+    }));
   }
 
   onChangePage(page: []) {
@@ -47,7 +48,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUserList() {
-    this.api.getUserList(this.needPage,
+    this.subscriptions.add(this.api.getUserList(this.needPage,
       this.genre,
       this.status,
       this.firstName,
@@ -55,7 +56,7 @@ export class UsersComponent implements OnInit {
       this.email,
       this.phone).subscribe(res => {
       this.users = res.result;
-    });
+    }));
   }
 
   genreChange($event: any) {
@@ -69,7 +70,6 @@ export class UsersComponent implements OnInit {
   }
 
   showUser(id: number) {
-    console.log(id);
     this.router.navigate([id], {relativeTo: this.activeRoute});
   }
 
@@ -79,6 +79,22 @@ export class UsersComponent implements OnInit {
 
   addNewUser() {
     this.router.navigate([`edit/new`], {relativeTo: this.activeRoute});
+  }
+
+  deleteUser(id: number) {
+    this.subscriptions.add(this.api.deleteUser(id)
+      .subscribe(res => {
+        if (res["_meta"]["success"]){
+          alert(`user with id: ${id} was deleted!`);
+        } else {
+          alert(`Something go wrong`);
+        }
+      }));
+    this.getUserList();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
 

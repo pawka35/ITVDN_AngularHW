@@ -1,26 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApiService, User} from '../../../../shared/api.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit, OnDestroy {
 currentUser: User;
 userForm: FormGroup;
 statuses =  ['active', 'inactive'];
 genders = ['male', 'female'];
-  constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private fb: FormBuilder) { }
+subscriptions: Subscription = new Subscription();
+
+  constructor(private api: ApiService, private activatedRoute: ActivatedRoute, private fb: FormBuilder,
+              private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.activatedRoute.params.forEach((params: Params) => {
      // console.log(+params.id);
       if (!isNaN(+params.id)) {
-        this.api.getUser(+params.id)
+        this.subscriptions.add(this.api.getUser(+params.id)
           .subscribe(res => {
             this.currentUser = res.result;
             this.userForm.controls['email'].setValue(this.currentUser.email);
@@ -31,9 +35,7 @@ genders = ['male', 'female'];
             this.userForm.controls['address'].setValue(this.currentUser.address);
             this.userForm.controls['userStatus'].setValue(this.currentUser.status);
             this.userForm.controls['gender'].setValue(this.currentUser.gender);
-
-            console.log(this.currentUser);
-          });
+          }));
       }
 
       this.userForm = this.fb.group({
@@ -46,7 +48,6 @@ genders = ['male', 'female'];
         userStatus: [''],
         gender: ['']
       });
-      console.log(this.userForm);
     });
   }
 
@@ -63,14 +64,14 @@ genders = ['male', 'female'];
   sendEdited() {
 
     this.compileUser();
-    this.api.sendUserInfo(this.currentUser)
+    this.subscriptions.add(this.api.sendUserInfo(this.currentUser)
       .subscribe(res => {
         if (res['_meta']['success']) {
           alert('all done');
         } else {
           alert('Something go wrong. Try again!');
         }
-      });
+      }));
   }
 
   addUser() {
@@ -88,14 +89,21 @@ genders = ['male', 'female'];
       _links: null
     };
 
-    this.api.addUser(newUser)
+    this.subscriptions.add(this.api.addUser(newUser)
       .subscribe(res => {
         if (!res['_meta']['success']){
           alert(res['_meta']['message']);
         } else {
           alert('User added! Id:'+res['result']['id']);
         }
-        console.log(res);
-      });
+      }));
+  }
+
+  backToList() {
+    this.router.navigate([''], {relativeTo: this.activeRoute});
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
