@@ -11,6 +11,11 @@ export class InterceptorService implements HttpInterceptor {
   constructor(private api: ApiService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    
+    if (req.url.includes('./')) { 
+      return next.handle(req);
+    };
+
     const token = 'a5ceU_1231n7Z2tsOpOt9G_hYHPmVZu4FYUL';
     req = req.clone({
         setHeaders: {

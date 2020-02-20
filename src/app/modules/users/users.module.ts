@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { BaseuserComponent } from './components/baseuser/baseuser.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -15,13 +16,16 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     JwPaginationComponent,
     CurrentUserComponent,
     BaseuserComponent,
-    EditUserComponent
+    EditUserComponent,
+    
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TranslateModule 
+
   ],
 })
 export class UsersModule { }
