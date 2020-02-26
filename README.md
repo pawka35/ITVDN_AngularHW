@@ -1,5 +1,5 @@
-# Lesson 8
-## Task summary
-- work with https://gorest.co.in
-- work with https://randomuser.me/api/?gender=male&inc=picture (for photo)
+# Lesson 9
+## Translation
+
+- Add en and ru languases to previous(Lesson8) site.
 
