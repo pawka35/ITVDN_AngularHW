@@ -2,29 +2,29 @@
 <div class="container mb-4">
 <button class="btn btn-sm btn-success ml-3" (click)="addNewUser()">{{'newuser' | translate}} </button>
 <div class="card text-center m-3">
-  <h3 class="card-header">Users</h3>
+  <h3 class="card-header">{{'Users'|translate}}</h3>
   <div class="card-body">
     <table class="table table-sm table-striped ">
       <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Status</th>
-        <th scope="col">Action</th>
+        <th scope="col">{{'First Name'|translate}}</th>
+        <th scope="col">{{'Last Name'|translate}}</th>
+        <th scope="col">{{'Gender'|translate}}</th>
+        <th scope="col">{{'Email'|translate}}</th>
+        <th scope="col">{{'Phone'|translate}}</th>
+        <th scope="col">{{'Status'|translate}}</th>
+        <th scope="col">{{'Action'|translate}}</th>
       </tr>
       <tr>
         <th scope="col">
           <input disabled type="text" class="form-control">
         </th>
         <th scope="col">
-          <input type="text" class="form-control" placeholder="first_name"  [(ngModel)]="firstName" (change)="getUserList()">
+          <input type="text" class="form-control" placeholder="{{'First Name'|translate}}"  [(ngModel)]="firstName" (change)="getUserList()">
         </th>
         <th scope="col">
-          <input type="text" class="form-control" placeholder="last_name"  [(ngModel)]="lastName" (change)="getUserList()">
+          <input type="text" class="form-control" placeholder="{{'Last Name'|translate}}"  [(ngModel)]="lastName" (change)="getUserList()">
         </th>
         <th scope="col">
           <select name="" id="" class="form-control" (change)="genreChange($event)">
@@ -33,18 +33,18 @@
           </select>
         </th>
         <th scope="col">
-          <input type="text" class="form-control" placeholder="email"  [(ngModel)]="email" (change)="getUserList()">
+          <input type="text" class="form-control" placeholder="{{'Email'|translate}}"  [(ngModel)]="email" (change)="getUserList()">
         </th>
         <th scope="col">
-          <input type="text" class="form-control" placeholder="Phone"  [(ngModel)]="phone" (change)="getUserList()">
+          <input type="text" class="form-control" placeholder="{{'Phone'|translate}}"  [(ngModel)]="phone" (change)="getUserList()">
         </th>
         <th scope="col">
           <select name="" id="" class="form-control " (change)="statusChange($event)">
             <option></option>
-            <option *ngFor="let status of statuses">{{status}}</option>
+            <option *ngFor="let status of statuses">{{status|translate}}</option>
           </select>
         </th>
-        <th scope="col">Action</th>
+        <th scope="col"></th>
       </tr>
 
       </thead>
@@ -54,10 +54,10 @@
         <td>{{user.id}}</td>
         <td>{{user.first_name}}</td>
         <td>{{user.last_name}}</td>
-        <td>{{user.gender}}</td>
+        <td>{{user.gender | translate}}</td>
         <td>{{user.email}}</td>
         <td>{{user.phone}}</td>
-        <td>{{user.status}}</td>
+        <td>{{user.status | translate}}</td>
         <td class="col-2">
           <button class="btn-sm btn" (click)="showUser(user.id)"> <i class="material-icons">account_circle</i></button>
           <button class="btn-sm btn" (click)="editUser(user.id)"> <i class="material-icons">build</i></button>

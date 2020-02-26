@@ -1,53 +1,59 @@
 <div class="container mb-4">
 <form [formGroup]="userForm" novalidate >
   <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input formControlName="firstName" class="form-control" id="firstName"  placeholder="Enter First Name">
+    <label for="firstName">{{'First Name'|translate}}</label>
+    <input formControlName="firstName" class="form-control" id="firstName"  placeholder="{{'Enter'|translate}}
+    {{'First Name'|translate}}">
   </div>
   <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input formControlName="lastName" class="form-control" id="lastName"  placeholder="Enter Last Name">
+    <label for="lastName">{{'Last Name'|translate}}</label>
+    <input formControlName="lastName" class="form-control" id="lastName"  placeholder="{{'Enter'|translate}}
+ {{'Last Name'|translate}}">
   </div>
 
   <div class="form-group">
-    <label for="dob">Date of birth</label>
-    <input type="date" formControlName="dob" class="form-control" id="dob"  placeholder="Date of birth">
+    <label for="dob">{{'Dob'|translate}}</label>
+    <input type="date" formControlName="dob" class="form-control" id="dob"  placeholder="{{'Dob'|translate}}">
   </div>
 
   <div>
-    <label for="gender">Gender</label>
+    <label for="gender">{{'Gender'|translate}}</label>
     <select class="custom-select"  formControlName="gender" id="gender">
-      <option *ngFor="let gender of genders" [ngValue]="gender">{{gender}}</option>
+      <option *ngFor="let gender of genders" [ngValue]="gender">{{gender|translate}}</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="email">Email address</label>
-    <input formControlName="email" class="form-control" id="email"  placeholder="Enter email">
+    <label for="email">{{'Email'|translate}}</label>
+    <input formControlName="email" class="form-control" id="email"  placeholder="{{'Enter'|translate}} email">
   </div>
   <div class="form-group">
-    <label for="phone">Phone</label>
-    <input formControlName="phone" class="form-control" id="phone"  placeholder="Enter Phone">
+    <label for="phone">{{'Phone'|translate}}</label>
+    <input formControlName="phone" class="form-control" id="phone"  placeholder="{{'Enter'|translate}}
+ {{'Phone'|translate}}">
   </div>
   <div class="form-group">
-    <label for="website">Website</label>
-    <input formControlName="website" class="form-control" id="website"  placeholder="Enter Website">
+    <label for="website">{{'Web site'|translate}}</label>
+    <input formControlName="website" class="form-control" id="website"  placeholder="{{'Enter'|translate}} 
+ {{'Web site'|translate}}">
   </div>
   <div class="form-group">
-    <label for="address">Address</label>
-    <input formControlName="address" class="form-control" id="address"  placeholder="Enter Address">
+    <label for="address">{{'Address'|translate}}</label>
+    <input formControlName="address" class="form-control" id="address"  placeholder="{{'Enter'|translate}} 
+ {{'Address'|translate}}">
   </div>
   <div class="form-group">
-    <label for="status">Status</label>
+    <label for="status">{{'Status'|translate}}</label>
     <select class="custom-select"  formControlName="userStatus" id="status">
-      <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
+      <option *ngFor="let status of statuses" [ngValue]="status">{{status|translate}}</option>
     </select>
   </div>
 <div>
-  <button *ngIf="currentUser" type="submit" class="btn btn-primary" (click)="sendEdited()">Send User</button>
+  <button *ngIf="currentUser" type="submit" class="btn btn-primary" (click)="sendEdited()">{{'Send User'|translate}}
+  </button>
 
-  <button *ngIf="!currentUser" type="submit" class="btn btn-primary" (click)="addUser()">Add User</button>
+  <button *ngIf="!currentUser" type="submit" class="btn btn-primary" (click)="addUser()">{{'Add User'|translate}}</button>
 
-    <button (click)="backToList()" class="btn btn-secondary ml-2">Back to list</button>
+    <button (click)="backToList()" class="btn btn-secondary ml-2">{{'Back to list'|translate}}</button>
 
 </div>
 </form>

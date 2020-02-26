@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import {Observable} from 'rxjs';
+
 
 
 @Component({
@@ -17,6 +19,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.translateService.use(environment.defaultLocale);
+    this.translateService.addLangs(['ru', 'en']);
+    
+    
     this.headerTitle = "Home Work #9. Itvdn front-end course";
     this.time = new Date(Date.now()).toLocaleString("ru-RU");
     this.changeTime();
